@@ -1,0 +1,26 @@
+diff --git a/cmake/compiler_settings.cmake b/cmake/compiler_settings.cmake
+index a7689dc595..7172383fa3 100644
+--- a/cmake/compiler_settings.cmake
++++ b/cmake/compiler_settings.cmake
+@@ -152,16 +152,16 @@ macro(set_msvc_warnings)
+             set(CMAKE_SHARED_LINKER_FLAGS_DEBUGOPT "")
+         endif()
+ 
+-        # warnings as errors, max warning level (4)
+-        if(NOT CMAKE_CXX_FLAGS MATCHES "/WX")
+-            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /WX")
++        # warnings as errors, max warning level (3)
++        if(NOT CMAKE_CXX_FLAGS MATCHES "/W3")
++            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W3")
+         endif()
+ 
+         # taken from http://stackoverflow.com/questions/2368811/how-to-set-warning-level-in-cmake
+         if(CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
+-            string(REGEX REPLACE "/W[0-4]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
++            string(REGEX REPLACE "/W[0-4]" "/W3" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+         else()
+-            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
++            set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W3")
+         endif()
+     endif(MSVC)
+ endmacro()
