@@ -1,10 +1,8 @@
-vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
-
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO Mysvac/cpp-jsonlib
-    REF "${VERSION}"
-    SHA512 605cf5ba5209a8b1d4f713138c28d6950dd9db86ba29dc40b35431e98eb8b389c6a59ee8228882eb13eaea580bf1cc0f891c9ba2d365fd2bec351ba4ec9d2447
+    REF "v${VERSION}"
+    SHA512 8bc16ec0085a88922e24595fa2311f0b8acf95a1e9eb33fa09ab871acb457d6aa0b2073b0f7f73adb14b26eadd5112f3427fc34d691027dd0d2fee43d187d401
     HEAD_REF main
 )
 
@@ -16,7 +14,7 @@ vcpkg_cmake_configure(
 vcpkg_cmake_install()
 vcpkg_cmake_config_fixup()
 
-file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug")
 
 file(INSTALL "${CMAKE_CURRENT_LIST_DIR}/usage" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}")
 
