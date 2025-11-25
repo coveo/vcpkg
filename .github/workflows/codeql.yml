@@ -7,6 +7,9 @@ on:
     - cron: '26 0 * * 0'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   analyze:
     name: Analyze (${{ matrix.language }})
@@ -29,6 +32,11 @@ jobs:
         - language: python
           build-mode: none
     steps:
+    - name: Harden the runner (Audit all outbound calls)
+      uses: step-security/harden-runner@v2
+      with:
+        egress-policy: audit
+
     - name: Checkout repository
       uses: actions/checkout@v4
     - name: Initialize CodeQL
