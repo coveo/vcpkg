@@ -5,12 +5,20 @@ on:
     types:
       - opened
 
+permissions:
+  contents: read
+
 jobs:
   check-for-common-issues:
     runs-on: ubuntu-latest
     permissions:
       issues: write
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@20cf305ff2072d973412fa9b1e3a4f227bda3c76 # v2.14.0
+        with:
+          egress-policy: audit
+
       - uses: actions/github-script@v8
         with:
           script: |
